@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Clean Architecture</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_values">There are no values</string>
+    <string name="non_empty_text">There are some values</string>
+</resources>

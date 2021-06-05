@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+def junitVersion = '4.13'
+def extJunitVersion = '1.1.2'
+def mockitoCoreVersion = '3.4.6'
+def mockitoInlineVersion = '3.5.0'
+def nhaarmanMockitoKotlinVersion = '1.5.0'
+def archCoreTestVersion = '2.1.0'
+def hiltNavigationFragment = '1.0.0'
+def hiltViewModelLifecycle = '1.0.0-alpha03'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.satyaraj.cleanarchitecture"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.12'
+
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+    implementation("androidx.hilt:hilt-navigation-fragment:$hiltNavigationFragment")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModelLifecycle")
+    kapt("androidx.hilt:hilt-compiler:$hiltNavigationFragment")
+
+
+    implementation "androidx.test.ext:junit:${extJunitVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoCoreVersion}"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:${nhaarmanMockitoKotlinVersion}"
+    testImplementation "org.mockito:mockito-inline:${mockitoInlineVersion}"
+    testImplementation "androidx.arch.core:core-testing:${archCoreTestVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${extJunitVersion}"
+}
